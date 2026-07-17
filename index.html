@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunal Nishad | Frontend Developer</title>
+<meta name="description" content="Professional Portfolio of Kunal Nishad">
+<meta name="keywords" content="Portfolio, HTML, CSS, JavaScript, Web Developer">
+<meta name="author" content="Kunal Nishad">
+
+<style>
+:root{
+  --bg:#f4f7ff;
+  --bg-alt:#eef2ff;
+  --surface:rgba(255,255,255,.78);
+  --surface-strong:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --primary:#2563eb;
+  --primary-strong:#1d4ed8;
+  --accent:#7c3aed;
+  --border:rgba(15,23,42,.08);
+  --shadow:0 25px 80px rgba(15,23,42,.12);
+  --max-width:1200px;
+}
+
+body[data-theme="dark"]{
+  --bg:#020617;
+  --bg-alt:#0f172a;
+  --surface:rgba(15,23,42,.78);
+  --surface-strong:#0f172a;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --primary:#60a5fa;
+  --primary-strong:#3b82f6;
+  --accent:#a78bfa;
+  --border:rgba(255,255,255,.08);
+  --shadow:0 24px 70px rgba(2,6,23,.55);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at top left, rgba(37,99,235,.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(124,58,237,.16), transparent 35%),
+    linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+  z-index:-2;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 50%, transparent 100%);
+  z-index:-1;
+  pointer-events:none;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+.skip-link{
+  position:absolute;
+  left:-999px;
+  top:0;
+  background:black;
+  color:white;
+  padding:10px 14px;
+  z-index:1000;
+}
+
+.skip-link:focus{
+  left:10px;
+  top:10px;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(30,58,138,.8);
+  backdrop-filter:blur(14px);
+  box-shadow:0 10px 30px rgba(15,23,42,.18);
+}
+
+.header-inner{
+  width:min(var(--max-width), calc(100% - 2rem));
+  margin:0 auto;
+  padding:1rem 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+}
+
+.brand{
+  font-size:1.2rem;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:white;
+}
+
+.nav-links{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
+.nav-links a{
+  color:white;
+  font-weight:600;
+  padding:.4rem .7rem;
+  border-radius:999px;
+  transition:background .25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible{
+  background:rgba(255,255,255,.16);
+}
+
+.theme-toggle{
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.14);
+  color:white;
+  padding:.6rem .9rem;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+  transition:transform .2s ease, background .2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.22);
+}
+
+main{
+  width:min(var(--max-width), calc(100% - 2rem));
+  margin:0 auto;
+  display:grid;
+  gap:1.5rem;
+}
+
+section{
+  padding:clamp(2.5rem, 5vw, 4rem) 0;
+}
+
+.hero{
+  display:grid;
+  gap:2rem;
+  align-items:center;
+  padding-top:clamp(2rem, 4vw, 3rem);
+}
+
+.hero-text{
+  display:grid;
+  gap:1rem;
+}
+
+.badge{
+  display:inline-flex;
+  align-self:flex-start;
+  padding:.5rem .85rem;
+  border-radius:999px;
+  background:rgba(37,99,235,.12);
+  color:var(--primary-strong);
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:.03em;
+}
+
+.hero h2{
+  font-size:clamp(2rem, 4.2vw, 3.7rem);
+  line-height:1.1;
+  color:var(--text);
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:62ch;
+  font-size:1.05rem;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.95rem 1.35rem;
+  border-radius:999px;
+  font-weight:700;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  color:white;
+  box-shadow:0 12px 25px rgba(37,99,235,.2);
+}
+
+.btn-secondary{
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.hero-visual{
+  display:grid;
+  place-items:center;
+  position:relative;
+  min-height:320px;
+}
+
+.hero-visual::before{
+  content:"";
+  position:absolute;
+  inset:10% 12%;
+  border-radius:30px;
+  background:linear-gradient(135deg, rgba(37,99,235,.16), rgba(124,58,237,.14));
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+
+.hero-card{
+  position:relative;
+  z-index:1;
+  width:min(100%, 320px);
+  padding:1.6rem;
+  border-radius:24px;
+  background:var(--surface-strong);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:1rem;
+}
+
+.hero-card .dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow:0 0 0 8px rgba(37,99,235,.1);
+}
+
+.mini-chart{
+  display:flex;
+  align-items:flex-end;
+  gap:.6rem;
+  min-height:90px;
+}
+
+.mini-chart span{
+  display:block;
+  width:22px;
+  border-radius:999px;
+  background:linear-gradient(180deg, var(--primary), var(--accent));
+}
+
+.mini-chart span:nth-child(1){height:48px;}
+.mini-chart span:nth-child(2){height:72px;}
+.mini-chart span:nth-child(3){height:100px;}
+
+.hero-card p{
+  font-weight:700;
+  color:var(--muted);
+}
+
+section h2{
+  font-size:clamp(1.5rem, 2.6vw, 2rem);
+  margin-bottom:1rem;
+}
+
+.section-intro{
+  color:var(--muted);
+  margin-bottom:1.5rem;
+  max-width:64ch;
+}
+
+.about-grid,
+.contact-grid{
+  display:grid;
+  gap:1.25rem;
+}
+
+.about-card,
+.project-card,
+.contact-card,
+.contact-form{
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  border-radius:24px;
+  backdrop-filter:blur(14px);
+}
+
+.about-card,
+.contact-card,
+.contact-form{
+  padding:1.5rem;
+}
+
+.about-stats{
+  display:grid;
+  gap:1rem;
+  margin-top:1.2rem;
+}
+
+.stat{
+  padding:1rem;
+  border-radius:18px;
+  background:var(--surface-strong);
+  border:1px solid var(--border);
+}
+
+.stat strong{
+  display:block;
+  color:var(--primary-strong);
+  font-size:1.15rem;
+}
+
+.projects-grid{
+  display:grid;
+  gap:1.25rem;
+}
+
+.project-card{
+  padding:1.5rem;
+  display:grid;
+  gap:1rem;
+}
+
+.project-card.featured{
+  background:linear-gradient(135deg, rgba(37,99,235,.18), rgba(124,58,237,.14));
+}
+
+.project-card h3{
+  font-size:1.1rem;
+}
+
+.project-card p{
+  color:var(--muted);
+}
+
+.project-card ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+}
+
+.project-card li{
+  padding:.45rem .75rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.35);
+  color:var(--text);
+  font-size:.9rem;
+  border:1px solid var(--border);
+}
+
+.contact-card ul{
+  list-style:none;
+  display:grid;
+  gap:.75rem;
+  margin-top:.8rem;
+}
+
+.contact-card a{
+  color:var(--primary-strong);
+  font-weight:600;
+}
+
+form{
+  display:grid;
+  gap:1rem;
+}
+
+label{
+  font-weight:700;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:.95rem 1rem;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:var(--surface-strong);
+  color:var(--text);
+  outline:none;
+}
+
+textarea{
+  border-radius:1rem;
+  min-height:120px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(37,99,235,.16);
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  padding:.95rem 1.4rem;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--primary), var(--accent));
+  color:white;
+  font-weight:700;
+  width:max-content;
+  transition:transform .2s ease;
+}
+
+button:hover,
+button:focus-visible{
+  transform:translateY(-2px);
+}
+
+footer{
+  padding:2rem 1rem 2.5rem;
+  text-align:center;
+  color:var(--muted);
+}
+
+@media (min-width:640px){
+  .about-grid{
+    grid-template-columns:1.2fr .8fr;
+  }
+
+  .projects-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media (min-width:900px){
+  .hero{
+    grid-template-columns:1.05fr .95fr;
+  }
+
+  .projects-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+  }
+
+  .project-card.featured{
+    grid-column:span 2;
+  }
+}
+
+@media (max-width:640px){
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .nav-links{
+    width:100%;
+  }
+
+  .theme-toggle{
+    margin-top:.2rem;
+  }
+
+  .hero-visual{
+    min-height:280px;
+  }
+}
+</style>
+</head>
+
+<body data-theme="light">
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header>
+  <div class="header-inner">
+    <a class="brand" href="#home">Kunal Nishad</a>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" aria-pressed="false" type="button">🌙 Dark</button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <span class="badge">Frontend Developer • UI/UX Focused</span>
+    <h2>Hello, I'm Kunal Nishad</h2>
+    <p>
+      I craft responsive, accessible, and highly polished web experiences using semantic HTML, modern CSS, and JavaScript.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-card">
+      <span class="dot"></span>
+      <div class="mini-chart">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p>Design • Build • Optimize</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p class="section-intro">
+    I build modern, responsive, SEO-friendly, and accessible websites that look exceptional on every device while following HTML5 and WCAG best practices.
+  </p>
+
+  <div class="about-grid">
+    <article class="about-card">
+      <h3>What I Do</h3>
+      <p>
+        From clean UI systems to fast-loading interactive experiences, I focus on creating elegant interfaces that feel effortless for users.
+      </p>
+    </article>
+
+    <div class="about-card">
+      <h3>Core Strengths</h3>
+      <div class="about-stats">
+        <div class="stat">
+          <strong>Responsive</strong>
+          <span>Mobile-first layouts with pixel-perfect adaptation.</span>
+        </div>
+        <div class="stat">
+          <strong>Accessible</strong>
+          <span>Keyboard-friendly, semantic, and inclusive.</span>
+        </div>
+        <div class="stat">
+          <strong>Performant</strong>
+          <span>Optimized structure and scalable front-end architecture.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <p class="section-intro">
+    A selection of projects designed with modern layouts, thoughtful UX, and responsive behavior in mind.
+  </p>
+
+  <div class="projects-grid">
+    <article class="project-card featured">
+      <h3>Portfolio Website</h3>
+      <p>A polished one-page portfolio built with semantic HTML and advanced CSS styling.</p>
+      <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>Accessibility</li>
+      </ul>
+    </article>
+
+    <article class="project-card">
+      <h3>E-Commerce</h3>
+      <p>Shopping experience with fluid layouts and elegant product presentation.</p>
+      <ul>
+        <li>Responsive</li>
+        <li>Grid</li>
+        <li>UI Design</li>
+      </ul>
+    </article>
+
+    <article class="project-card">
+      <h3>Weather App</h3>
+      <p>Interactive web app powered by JavaScript and API-driven content.</p>
+      <ul>
+        <li>JavaScript</li>
+        <li>API</li>
+        <li>Dynamic UI</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p class="section-intro">
+    Interested in building something exceptional? Let’s connect and bring your ideas to life.
+  </p>
+
+  <div class="contact-grid">
+    <aside class="contact-card">
+      <h3>Get in touch</h3>
+      <ul>
+        <li>Email: <a href="mailto:kunal@example.com">kunalnishad2212@example.com</a></li>
+        <li>Location: India</li>
+        <li>Availability: Open for freelance and remote projects</li>
+      </ul>
+    </aside>
+
+    <form class="contact-form" aria-label="Contact Form">
+      <label for="name">Name</label>
+      <input id="name" type="text" required autocomplete="name">
+
+      <label for="email">Email</label>
+      <input id="email" type="email" required autocomplete="email">
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Kunal Nishad | All Rights Reserved</p>
+</footer>
+
+<script>
+const toggleButton = document.getElementById("theme-toggle");
+const body = document.body;
+
+function applyTheme(theme){
+  body.setAttribute("data-theme", theme);
+  toggleButton.setAttribute("aria-pressed", theme === "dark");
+  toggleButton.textContent = theme === "dark" ? "☀️ Light" : "🌙 Dark";
+}
+
+const savedTheme = localStorage.getItem("theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+
+applyTheme(initialTheme);
+
+toggleButton.addEventListener("click", () => {
+  const nextTheme = body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", nextTheme);
+  applyTheme(nextTheme);
+});
+</script>
+
+</body>
+</html>
